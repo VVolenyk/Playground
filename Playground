@@ -1,0 +1,17 @@
+using System;
+
+namespace Math {
+class Program {
+  public static void Main (string[] args) {
+    int x = 4;
+    int y = 6;
+    int z;
+    string select;
+    Console.WriteLine ("+ or -");
+    select = Console.ReadLine();
+    z = select == "+"? (x+y):(x-y);
+    Console.WriteLine($"We got {z}");
+
+  }
+}
+}
