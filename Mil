@@ -1,11 +1,14 @@
 import java.util.Scanner;
 
 class Main {
+  public static Scanner in = new Scanner(System.in);
   public static int money = 0;
-  public static int question = 1;
+  public static int question = 0;
   public static int i = 0;
+  public static int questionnumber = 2; 
   public static String[] correctanswers = { "B) Из мешка", "А) Стрела.", "C) Объектив", "A) Большая-пребольшая",
       "D) Дохлую кошку", "C) Рассольные" };
+   public static String[] answersshort = { "B", "А", "C", "A","D", "C"};
   public static String[] questions = {
     "Откуда обычно достает подарки Дед Мороз?",                           // 1
      "Какой элемент есть в конструкции башенного крана",                  // 2
@@ -14,18 +17,19 @@ class Main {
      "Кого или что Том Сойер и Гек Фин принесли ночью на кладбище?",      // 5
      "К какому типу сыров относится сулугуни?"};                         // 6 
 
-  public static String[] answers = {
-    "A) Из шкатулки     "+ correctanswers[i]  +"\t C) Из-за пазухи      D) Из носка",           // 1
-    correctanswers[i] +"     B) Копье\t C) Дротик      D) Бумеранг",                            // 2
+  public static String[] options = {
+    "A) Из шкатулки     "+ correctanswers[i]  +"\nC) Из-за пазухи    D) Из носка",           // 1
+    correctanswers[i] +"     B) Копье\n C) Дротик      D) Бумеранг",                            // 2
     "A) Негатив     B) Позитив\t"+ correctanswers[i] +"     D) Мотив",                          // 3
-    correctanswers[i] + "     B) Чужая-пречужая\t C) Святая-персвятая     D) Сухая-пресухая",    // 4
-    "A) Злую собаку     B) Белую мышь\t C) Черную Курицу      "+ correctanswers[i],              // 5 
-    "A) Твёрдые      B) Мягкие\t"+ correctanswers[i] +"      D) Плавленые"                       //6
+    correctanswers[i] + "     B) Чужая-пречужая\nC) Святая-персвятая     D) Сухая-пресухая",    // 4
+    "A) Злую собаку     B) Белую мышь\nC) Черную Курицу      "+ correctanswers[i],              // 5 
+    "A) Твёрдые      B) Мягкие\n"+ correctanswers[i] +"      D) Плавленые"                       //6
   };
+  public static String[] answers = new String[questions.length];
   
 
   public static void main(String[] args) {
-    Scanner in = new Scanner(System.in);
+    
     say("Добро пожаловать!");
     String firstchoice;
 
@@ -51,6 +55,19 @@ class Main {
       }
     } while (!firstchoice.equals("Y"));
     say("Первый вопрос:");
+    say(questions[i]);
+    say(options[i]);
+    getAnswer();
+    testAnswer();
+    nextQuestion();
+
+    
+    /*
+    if (;i<questions.length;){
+
+    }
+    */
+
 
   }
 
@@ -59,8 +76,10 @@ class Main {
   }
 
   public static void correct() {
-    question++;
+    questionnumber++;
     i++;
+    question++;
+    money += i*50 ;
     say("Правильный ответ!");
     say("Вы выиграли " + money + " гривен!");
   }
@@ -77,7 +96,15 @@ class Main {
   }
 
   public static void getAnswer() {
-    String firstanswer = in.nextLine();
+    answers[i]  = in.nextLine();
   }
+  public static void testAnswer(){
+    if(answers[i].equals(answersshort[i])){
+      correct();
+    }
+    else{
+      wrong();
+    }
+  } 
 
 }
