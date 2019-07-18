@@ -1,0 +1,83 @@
+import java.util.Scanner;
+
+class Main {
+  public static int money = 0;
+  public static int question = 1;
+  public static int i = 0;
+  public static String[] correctanswers = { "B) Из мешка", "А) Стрела.", "C) Объектив", "A) Большая-пребольшая",
+      "D) Дохлую кошку", "C) Рассольные" };
+  public static String[] questions = {
+    "Откуда обычно достает подарки Дед Мороз?",                           // 1
+     "Какой элемент есть в конструкции башенного крана",                  // 2
+    "Как называется оптическое устройство, необходимое фотокамере?",      // 3  
+     "Что сказано о Москве в песне из кинофильма «Девушка без адреса»?",  // 4 
+     "Кого или что Том Сойер и Гек Фин принесли ночью на кладбище?",      // 5
+     "К какому типу сыров относится сулугуни?"};                         // 6 
+
+  public static String[] answers = {
+    "A) Из шкатулки     "+ correctanswers[i]  +"\t C) Из-за пазухи      D) Из носка",           // 1
+    correctanswers[i] +"     B) Копье\t C) Дротик      D) Бумеранг",                            // 2
+    "A) Негатив     B) Позитив\t"+ correctanswers[i] +"     D) Мотив",                          // 3
+    correctanswers[i] + "     B) Чужая-пречужая\t C) Святая-персвятая     D) Сухая-пресухая",    // 4
+    "A) Злую собаку     B) Белую мышь\t C) Черную Курицу      "+ correctanswers[i],              // 5 
+    "A) Твёрдые      B) Мягкие\t"+ correctanswers[i] +"      D) Плавленые"                       //6
+  };
+  
+
+  public static void main(String[] args) {
+    Scanner in = new Scanner(System.in);
+    say("Добро пожаловать!");
+    String firstchoice;
+
+    do {
+      say("Wanna play a litle game? (Y/N)");
+      firstchoice = in.nextLine(); // choice to play the game
+      if (firstchoice.equals("y")) {
+        firstchoice = "Y";
+      }
+      if (firstchoice.equals("n")) {
+        firstchoice = "N";
+      }
+      switch (firstchoice) {
+      case "Y":
+        say("Let`s play!");
+        break;
+      case "N":
+        say("You better think again!");
+        break;
+      default:
+        say("Please try again!");
+        break;
+      }
+    } while (!firstchoice.equals("Y"));
+    say("Первый вопрос:");
+
+  }
+
+  public static void say(String a) {
+    System.out.println(a);
+  }
+
+  public static void correct() {
+    question++;
+    i++;
+    say("Правильный ответ!");
+    say("Вы выиграли " + money + " гривен!");
+  }
+
+  public static void wrong() {
+    say("Sory, wrong answer!");
+    say("Correct answer is " + correctanswers[i]);
+    say("You won: " + money);
+    System.exit(0);
+  }
+
+  public static void nextQuestion() {
+    say("Вопрос номер " + question + ":");
+  }
+
+  public static void getAnswer() {
+    String firstanswer = in.nextLine();
+  }
+
+}
